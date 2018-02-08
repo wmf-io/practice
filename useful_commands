@@ -1,0 +1,1 @@
+ufw allow from 173.167.163.65 to any port 2222
