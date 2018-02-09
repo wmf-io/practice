@@ -1,3 +1,8 @@
 ufw allow from 173.167.163.65 to any port 2222
 
 lsblk - list block devices
+atop - process monitor (with raw file for 30 days history)
+sysdig - alternative to atop, but with less history (prettier?)
+htop
+iotop
+
