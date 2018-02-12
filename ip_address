@@ -3,7 +3,7 @@
 IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 file=/home/badmin/current_ip
 
-date > $file
+date >> $file
 echo $IP >> $file
 
 rsync -e 'ssh -p 22' $file ladmin@tom.bn1.io:/home/ladmin/
