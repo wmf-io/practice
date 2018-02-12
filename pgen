@@ -1,0 +1,10 @@
+#!/bin/bash
+#password generation options
+
+#alphanumeric
+cat /dev/urandom | tr -cd '[:alnum:]' | fold -w24 | sed 1q
+#all graphical chars (but no quotes)
+cat /dev/urandom | tr -cd '[:graph:]' | tr -d \'\"\` | fold -w24 | sed 1q
+#alternative using openssl
+#number MUST be divisible by 3
+openssl rand -base64 18
