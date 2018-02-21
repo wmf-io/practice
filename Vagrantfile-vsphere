@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require_relative 'vsphere-creds.rb'
+include Mycreds
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'dummy'
+  config.vm.box_url = './example_box/dummy.box'
+
+  config.vm.provider :vsphere do |vsphere|
+    vsphere.host = '10.1.47.25'
+    vsphere.compute_resource_name = 'SOV-CLUSTER'
+    vsphere.user = USERNAME
+    vsphere.password = PASSWORD
+    vsphere.template_name = 'ubuntu-16.04-vagrant'
+    vsphere.insecure = true
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    route add default gw 10.1.37.237
+    apt update
+    apt -y install python
+  SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/main.yml"
+    #ansible.raw_arguments = ["-vv", "-t config, kibana"]
+    ansible.raw_arguments = ["-vv"]
+		ansible.config_file = "ansible/ansible.cfg"
+  end
+
+end
