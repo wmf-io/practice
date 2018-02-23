@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 test() {
 	read -r -p "Is that you? (y/n)" response
