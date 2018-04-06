@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#to update Bobs current ip address for remote access
 IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 file=/home/badmin/current_ip
 
